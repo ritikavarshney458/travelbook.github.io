@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ExploreWorld - Travel Agency</title>
+
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+      scroll-behavior: smooth; /* Smooth scrolling */
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    /* Navbar */
+    header {
+      background-color: #0d3b66;
+      padding: 20px 0;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      color: #fff;
+      font-size: 28px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
+
+    nav ul li {
+      margin-left: 20px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: url('https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') no-repeat center center/cover;
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+    }
+
+    .hero h2 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      padding: 12px 25px;
+      background-color: #ff6b6b;
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #ff4757;
+    }
+
+    /* Destinations Section */
+    .destinations {
+      padding: 80px 20px;
+      background: #f7f7f7;
+      text-align: center;
+    }
+
+    .destinations h2 {
+      font-size: 36px;
+      margin-bottom: 50px;
+      color: #0d3b66;
+    }
+
+    .destinations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .destination-card {
+      background: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .destination-card:hover {
+      transform: scale(1.05);
+    }
+
+    .destination-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .destination-card h3 {
+      margin: 15px 0;
+      color: #0077b6;
+    }
+
+    /* About Section */
+    .about {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .about h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #0d3b66;
+    }
+
+    .about p {
+      font-size: 18px;
+      color: #555;
+    }
+
+    /* Booking Section */
+    .booking {
+      padding: 80px 20px;
+      background: #f7f7f7;
+      text-align: center;
+    }
+
+    .booking h2 {
+      font-size: 36px;
+      margin-bottom: 30px;
+      color: #0d3b66;
+    }
+
+    .booking-form {
+      max-width: 500px;
+      margin: auto;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .booking-form input,
+    .booking-form select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .booking-form input:focus,
+    .booking-form select:focus {
+      border-color: #0077b6;
+      outline: none;
+    }
+
+    .booking .btn {
+      background-color: #0077b6;
+      color: #fff;
+      padding: 12px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .booking .btn:hover {
+      background-color: #005f8e;
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 80px 20px;
+      text-align: center;
+      background: #e9ecef;
+    }
+
+    .contact h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #0d3b66;
+    }
+
+    .contact p {
+      font-size: 18px;
+      color: #333;
+    }
+
+    /* Footer */
+    footer {
+      background: #0d3b66;
+      padding: 20px;
+      text-align: center;
+      color: #fff;
+    }
+
+    /* Scroll to Top Button */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 99;
+      font-size: 18px;
+      background: #0077b6;
+      color: white;
+      border: none;
+      outline: none;
+      padding: 12px 16px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: background 0.3s;
+    }
+
+    #scrollTopBtn:hover {
+      background: #005f8e;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<header>
+  <div class="container nav-container">
+    <h1 class="logo">ExploreWorld</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#destinations">Destinations</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#booking">Booking</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+  <div class="container">
+    <h2>Your Adventure Starts Here</h2>
+    <p>Discover the world's most beautiful places with us!</p>
+    <a href="#destinations" class="btn">Explore Destinations</a>
+  </div>
+</section>
+
+<!-- Destinations Section -->
+<section id="destinations" class="destinations">
+  <div class="container">
+    <h2>Top Destinations</h2>
+    <div class="destinations-grid">
+      <div class="destination-card">
+        <img src="https://images.pexels.com/photos/756439/pexels-photo-756439.jpeg" alt="Budapest">
+        <h3>Budapest</h3>
+      </div>
+      <div class="destination-card">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Maldives">
+        <h3>Maldives</h3>
+      </div>
+      <div class="destination-card">
+        <img src="https://images.pexels.com/photos/36717/amazing-animal-beautiful-beautifull.jpg" alt="Rishikesh">
+        <h3>Rishikesh</h3>
+      </div>
+      <div class="destination-card">
+        <img src="https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg" alt="Dubai">
+        <h3>Dubai</h3>
+      </div>
+      <div class="destination-card">
+        <img src="https://images.pexels.com/photos/3951961/pexels-photo-3951961.jpeg" alt="Switzerland">
+        <h3>Switzerland</h3>
+      </div>
+      <div class="destination-card">
+        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c" alt="Paris">
+        <h3>Paris</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="about">
+  <div class="container">
+    <h2>About Us</h2>
+    <p>We are a team of passionate travel enthusiasts committed to helping you explore the world. From luxurious beaches to mystical mountains, we bring you the best travel experiences.</p>
+  </div>
+</section>
+
+<!-- Booking Section -->
+<section id="booking" class="booking">
+  <div class="container">
+    <h2>Book Your Trip</h2>
+    <form class="booking-form">
+      <div class="form-group">
+        <input type="text" placeholder="Full Name" required>
+      </div>
+      <div class="form-group">
+        <input type="email" placeholder="Email Address" required>
+      </div>
+      <div class="form-group">
+        <select required>
+          <option value="">Select Destination</option>
+          <option value="Budapest">Budapest</option>
+          <option value="Maldives">Maldives</option>
+          <option value="Rishikesh">Rishikesh</option>
+          <option value="Dubai">Dubai</option>
+          <option value="Switzerland">Switzerland</option>
+          <option value="Paris">Paris</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <input type="date" required>
+      </div>
+      <button type="submit" class="btn">Book Now</button>
+    </form>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact">
+  <div class="container">
+    <h2>Contact Us</h2>
+    <p>Email: exploreworld@gmail.com</p>
+    <p>Phone: +91 9876543210</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2025 ExploreWorld. All rights reserved.</p>
+</footer>
+
+<!-- Scroll to Top Button -->
+<button onclick="topFunction()" id="scrollTopBtn" title="Go to top">↑</button>
+
+<script>
+  // Scroll to Top button functionality
+  let mybutton = document.getElementById("scrollTopBtn");
+
+  window.onscroll = function() {scrollFunction()};
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+      mybutton.style.display = "block";
+    } else {
+      mybutton.style.display = "none";
+    }
+  }
+
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+</script>
+
+</body>
+</html>
